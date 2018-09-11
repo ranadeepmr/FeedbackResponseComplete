@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Feedback Display</title>
+</head>
+<body>
+<div class="mainDiv" align="left">
+<h1>All Users</h1>
+<table>
+<thead>
+<tr>
+<td>Name</td>
+<td>Company</td>
+<td>Email</td>
+<td>Phone</td>
+<td>Message</td>
+</tr>
+</thead>
+<tbody id="table_body">
+</tbody>
+</table>
+</div>
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyCaSXTs8YL_uo16tJlBLJionCcjSt2XrQ0",
+    authDomain: "user-feedback-rana.firebaseapp.com",
+    databaseURL: "https://user-feedback-rana.firebaseio.com",
+    projectId: "user-feedback-rana",
+    storageBucket: "user-feedback-rana.appspot.com",
+    messagingSenderId: "599032196228"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+  var rootRef = firebase.database().ref().child("messages");
+  rootRef.on("child_added",snap => {
+  var name = snap.child("name").val();
+  var company = snap.child("company").val();
+  var email = snap.child("email").val();
+  var phone = snap.child("phone").val();
+  var message = snap.child("message").val();
+  $("#table_body").append("<tr><td>" + name + "</td><td>" + company + "</td><td>" + email + "</td><td>" + phone + "</td>  <td>"+ message +"</td></tr>")
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<Title>Sign up Page</Title>
+</head>
+<body>
+<h2>Create an Account</h2>
+<h4>Email id:<input type="email" placeholder="Register Email" id="email_f"/></br>
+Password:<input type="password" placeholder="Register Password" id="password_f"/></br></h4>
+<input type="button" onclick="signup()" value="Register"/>
+
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBr96oeOEZ27RF8cZCXd6MbPioDhjFBrmo",
+    authDomain: "login-firebase-d7cf1.firebaseapp.com",
+    databaseURL: "https://login-firebase-d7cf1.firebaseio.com",
+    projectId: "login-firebase-d7cf1",
+    storageBucket: "login-firebase-d7cf1.appspot.com",
+    messagingSenderId: "337813650772"
+  };
+  firebase.initializeApp(config);
+  </script>
+
+  <script>
+  function signup(){
+  var userEmail1 = document.getElementById("email_f").value;
+  var userPass1 = document.getElementById("password_f").value;
+  firebase.auth().createUserWithEmailAndPassword(userEmail1, userPass1).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  console.log(errorMessage)
+  // ...
+  });
+  }
+  </script>
+
+
+</body>
+
+</html>
